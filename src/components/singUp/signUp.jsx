@@ -16,6 +16,7 @@ class signUp extends Component {
     handleSubmit=async e=>{
         e.preventDefault()
         const {displayName,email,password,confirmPassword}=this.state
+        console.log(displayName,email,password,confirmPassword)
         if(password!==confirmPassword){
             alert("Passwords Do not Match")
             return;
@@ -23,7 +24,7 @@ class signUp extends Component {
 
         try {
             const {user}=await auth.createUserWithEmailAndPassword(email,password)
-            await createUserProfile(user,displayName)
+            await createUserProfile(this.state,{displayName})
             this.setState={
             displayName:'',
             email:'',
